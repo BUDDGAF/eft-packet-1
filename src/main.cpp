@@ -33,8 +33,8 @@
 #define GLT_IMPLEMENTATION
 #include "gltext.h"
 
-#define LOCAL_ADAPTER_IP_ADDRESS "fill.me.in" // ipconfig in cmd prompt on cheat machine, find local address, fill it in here
-#define MACHINE_PLAYING_GAME_IP_ADDRESS "fill.me.in" // the local IP address of the machine communicating with EFT servers
+#define LOCAL_ADAPTER_IP_ADDRESS "192.168.137.1" // ipconfig in cmd prompt on cheat machine, find local address, fill it in here
+#define MACHINE_PLAYING_GAME_IP_ADDRESS "192.168.137.58" // the local IP address of the machine communicating with EFT servers
 
 struct Packet
 {
@@ -305,7 +305,7 @@ void do_net(std::vector<Packet> work, const char* packet_dump_path)
         bool no_state = tk::g_state == nullptr;
         bool no_server = no_state || tk::g_state->server_ip.empty();
         bool filtered_out = no_server ||
-            (   tk::g_state->server_ip != packet.src_ip &&
+            (tk::g_state->server_ip != packet.src_ip &&
                 tk::g_state->server_ip != packet.dst_ip &&
                 tk::g_state->server_ip != "LOCAL_REPLAY");
 
@@ -329,7 +329,7 @@ void do_net(std::vector<Packet> work, const char* packet_dump_path)
 
         UNET::AcksCache* received_acks = packet.outbound ? s_outbound_acks.get() : s_inbound_acks.get();
 
-        UNET::MessageExtractor messageExtractor((char*)data_start, data_len, 3 + (102*2), received_acks);
+        UNET::MessageExtractor messageExtractor((char*)data_start, data_len, 3 + (102 * 2), received_acks);
         while (messageExtractor.GetNextMessage())
         {
             std::unique_ptr<std::vector<uint8_t>> complete_message;
@@ -423,7 +423,7 @@ void do_net(std::vector<Packet> work, const char* packet_dump_path)
 void do_render(GraphicsState* gfx)
 {
     // ye who read this code, judge its performance (and lack of state caching) not
-    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     {
@@ -468,7 +468,7 @@ void do_render(GraphicsState* gfx)
                 glUniformMatrix4fv(glGetUniformLocation(gfx->shader, "view"), 1, GL_FALSE, &view[0][0]);
 
                 auto draw_text = [&gfx]
-                    (float x, float y, float z, float scale, const char* txt, int r, int g, int b, int a, glm::mat4* view, glm::mat4* proj)
+                (float x, float y, float z, float scale, const char* txt, int r, int g, int b, int a, glm::mat4* view, glm::mat4* proj)
                 {
                     GLTtext* text = gltCreateText();
                     gltSetText(text, txt);
@@ -480,7 +480,7 @@ void do_render(GraphicsState* gfx)
                 };
 
                 auto draw_box = [&gfx]
-                    (float x, float y, float z, float scale_x, float scale_y, float scale_z, int r, int g, int b)
+                (float x, float y, float z, float scale_x, float scale_y, float scale_z, int r, int g, int b)
                 {
                     glm::mat4 model = glm::mat4(1.0f);
                     glm::vec3 pos(x, y, z);
@@ -496,7 +496,7 @@ void do_render(GraphicsState* gfx)
                 };
 
                 auto draw_line = [&gfx]
-                    (float x, float y, float z, float to_x, float to_y, float to_z, int r, int g, int b, int a)
+                (float x, float y, float z, float to_x, float to_y, float to_z, int r, int g, int b, int a)
                 {
                     float vertices[] =
                     {
@@ -664,7 +664,7 @@ void do_render(GraphicsState* gfx)
                     }
 
                     draw_box(entry->pos.x, entry->pos.y, entry->pos.z, 0.3f, 0.3f, 0.3f, r, g, b);
-                    
+
                 };
 
                 for (tk::LootEntry* entry : tk::g_state->map->get_loot())
