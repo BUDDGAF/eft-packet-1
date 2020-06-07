@@ -1,6 +1,6 @@
 ﻿std::unordered_map<std::string, std::string> coolItems = {
 	{ "543be5e94bdc2df1348b4568", "Key"},
-	{ "5448ba0b4bdc2d02308b456c", "Factory exit key"},
+	{ "5448ba0b4bdc2d02308b456c", "Factory key"},
 	{ "5672c92d4bdc2d180f8b4567", "Dorm room 118 Key"},
 	{ "5780cda02459777b272ede61", "Dorm room 306 Key"},
 	{ "5780cf692459777de4559321", "Dorm room 315 Key"},
@@ -122,4 +122,7 @@
 	{ "5da5cdcd86f774529238fb9b", "RB-RH key"},
 	{ "5da743f586f7744014504f72", "USEC stash on Customs key"},
 	{ "5ae4498786f7744bde357695", "The key to success"},
+	{ "5696686a4bdc2da3298b456a", "Dollars" },
+	{ "569668774bdc2da2298b4568", "Euros" },
+	{ "5449016a4bdc2d6f028b456f", "Roubles" },
 };

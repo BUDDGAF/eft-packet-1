@@ -35,7 +35,7 @@
 #include <Windows.h>
 
 #define LOCAL_ADAPTER_IP_ADDRESS "192.168.137.1" // ipconfig in cmd prompt on cheat machine, find local address, fill it in here
-#define MACHINE_PLAYING_GAME_IP_ADDRESS "192.168.137.68" // the local IP address of the machine communicating with EFT servers
+#define MACHINE_PLAYING_GAME_IP_ADDRESS "192.168.137.58" // the local IP address of the machine communicating with EFT servers
 
 
 struct Packet
